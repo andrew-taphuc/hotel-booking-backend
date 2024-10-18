@@ -20,7 +20,11 @@ app.get("/api/v1/hotels" , async (req, res) => {
             },
         });
     } catch (error) {
-        console.log(err);
+        console.error("Error fetching hotels:", error);
+        res.status(500).json({
+            status: "error",
+            message: "An error occurred while fetching hotels",
+        });
     }
 });
 
