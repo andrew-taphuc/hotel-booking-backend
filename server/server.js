@@ -8,6 +8,26 @@ const app = express();
 app.use(cors());
 app.use(express.json())
 
+
+
+app.get("/api/test-db", async (req, res) => {
+    try {
+        const result = await db.query("SELECT NOW()");
+        res.json({
+            status: "success",
+            message: "Database connection successful",
+            timestamp: result.rows[0].now
+        });
+    } catch (error) {
+        console.error("Database connection error:", error);
+        res.status(500).json({
+            status: "error",
+            message: "Failed to connect to the database",
+            error: error.toString()
+        });
+    }
+});
+
 //Get all hotels
 app.get("/api/v1/hotels" , async (req, res) => {
     try {
@@ -212,7 +232,7 @@ app.put("/api/v1/hotels/booking/detail/:booking_id/update", async (req, res) => 
         });
     }
 });
-const port = process.env.PORT || 3005;
-app.listen(port, () => {
-    console.log(`Console is up and listening on port ${port}`);
-});
+// const port = process.env.PORT || 3005;
+// app.listen(port, () => {
+//     console.log(`Console is up and listening on port ${port}`);
+// });
