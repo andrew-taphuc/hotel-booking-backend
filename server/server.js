@@ -232,7 +232,7 @@ app.put("/api/v1/hotels/booking/detail/:booking_id/update", async (req, res) => 
         });
     }
 });
-// const port = process.env.PORT || 3005;
-// app.listen(port, () => {
-//     console.log(`Console is up and listening on port ${port}`);
-// });
+const port = process.env.PORT || 3005;
+app.listen(port, () => {
+    console.log(`Console is up and listening on port ${port}`);
+});
